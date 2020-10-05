@@ -37,7 +37,7 @@ class Multip:
         self._mp_manager: mp.Manager = mp.Manager()
         self._mp_cores: int = mp.cpu_count()
         self._mp_pool: Pool_ = mp.Pool(max_workers)
-        self._mp_semaphore: Semaphore = Semaphore(self._mp_cores * 2 + 1)
+        self._mp_semaphore: Semaphore = Semaphore(max_workers)
         self._mp_result: Dict[str, Any] = {}
         self._mp_queue: Queue_ = mp.Queue()
         self._mp_dict = self._mp_manager.dict()
