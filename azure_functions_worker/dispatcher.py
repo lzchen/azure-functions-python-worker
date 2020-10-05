@@ -76,11 +76,6 @@ class Dispatcher(metaclass=DispatcherMeta):
             concurrent.futures.ThreadPoolExecutor(
                 max_workers=self._sync_tp_max_workers))
 
-        # We allow the customer asynchronous code to be run inside an
-        # asynchronous thread pool
-        self._async_call_tp: concurrent.futures.Executor = (
-            concurrent.futures.ThreadPoolExecutor(
-                max_workers=self._sync_tp_max_workers))
         # A mapping between invocation id and async function call task
         self._async_call_tasks: Dict[str, asyncio.Task] = {}
         self._async_call_loop: asyncio.BaseEventLoop = asyncio.get_event_loop()
